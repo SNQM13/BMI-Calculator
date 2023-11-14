@@ -12,7 +12,7 @@ class _bmiState extends State<bmi> {
   final getH = TextEditingController();
   late double weight;
   late double height;
-  late double bmi_result;
+  late double bmi_result = 0.0;
   String c_result = '';
 
   String classifyBMI(double bmi_result) {
@@ -37,6 +37,26 @@ class _bmiState extends State<bmi> {
 
   @override
   Widget build(BuildContext context) {
+    Color TextColor;
+
+    if (c_result == 'Severely Underweight') {
+      TextColor = Colors.red;
+    } else if (c_result == 'Underweight') {
+      TextColor = Colors.yellow;
+    } else if (c_result == 'Normal') {
+      TextColor = Colors.green;
+    } else if (c_result == 'Overweight') {
+      TextColor = Colors.yellow;
+    } else if (c_result == 'Moderately Obese') {
+      TextColor = Colors.orange.shade500;
+    } else if (c_result == 'Severely Obese') {
+      TextColor = Colors.orange.shade800;
+    } else if (c_result == 'Morbidly Obese') {
+      TextColor = Colors.red.shade800;
+    } else {
+      TextColor = Colors.black;
+    }
+
     return Scaffold(
       backgroundColor: Colors.grey[500],
       body: Center(
@@ -146,6 +166,8 @@ class _bmiState extends State<bmi> {
                         c_result,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: TextColor,
+                          fontSize: 40,
                         ),
                       ),
                     )
